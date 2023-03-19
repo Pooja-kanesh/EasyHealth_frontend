@@ -4,33 +4,7 @@
     border: 1px solid black
 } */
 
-.home-nav,
-.inner {
-    display: grid;
-    align-items: center;
-}
 
-.home-nav {
-    grid-template-columns: 6fr 1fr 1fr;
-    grid-column-gap: 2rem;
-    justify-content: space-between;
-    padding: 1em;
-    margin-bottom: 2rem;
-}
-
-.inner {
-    grid-template-columns: 1fr 1fr 5fr;
-    grid-column-gap: 0.5rem;
-}
-
-.title {
-    font-size: 4rem;
-    font-family: 'Righteous', cursive;
-}
-
-.home-logo {
-    max-width: 4rem;
-}
 
 img {
     max-width: 100%;
