@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+/* * {
+    border: 1px solid black
+} */
+
+.home-nav,
+.inner {
+    display: grid;
+    align-items: center;
+}
+
+.home-nav {
+    grid-template-columns: 6fr 1fr 1fr;
+    grid-column-gap: 2rem;
+    justify-content: space-between;
+    padding: 1em;
+    margin-bottom: 2rem;
+}
+
+.inner {
+    grid-template-columns: 1fr 1fr 5fr;
+    grid-column-gap: 0.5rem;
+}
+
+.title {
+    font-size: 4rem;
+    font-family: 'Righteous', cursive;
+}
+
+.home-logo {
+    max-width: 4rem;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.row-0 {
+    margin: 2em 0;
+}
+
+.col-8 {
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    padding: 1em 3em;
+}
+
+.col-4 {
+    max-height: 18em;
+}
+
+.book {
+    background-color: #dde1f450;
+}
+
+.child-vac {
+    background-color: #f9d3e450;
+}
+
+.record {
+    background-color: #c4e5d150;
+}
