@@ -1,7 +1,29 @@
 import React from "react"
-import logo from "../images/app-logo.png";
+import { Link } from "react-router-dom";
 
-const Header = function () {
+import "./Header.css"
+import logo from "../images/app-logo.png";
+import axios from "axios";
+
+const Header = function (props) {
+    const logoutHandler = async () => {
+        try {
+            const user = await axios.post("http://localhost:8000/logout")
+            localStorage.removeItem('Authorization')
+            console.log(localStorage, user)
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+    const buttons = () => {
+        if (props.isSubmitted) {
+            return (<><div></div><Link onClick={logoutHandler} className="btn btn-primary logbtn" to="/">Log Out</Link></>)
+        }
+        return (<><Link className="btn btn-danger link-to" to="/register">Register</Link>
+            <Link className="btn btn-primary logbtn" to="/login">Log In</Link>
+        </>)
+    }
     return (<>
         <div className="home-nav">
             <div className="inner">
@@ -9,8 +31,7 @@ const Header = function () {
                 <div className="title">EasyHealth</div>
             </div>
 
-            <button type="button" class="btn btn-outline-danger">Register</button>
-            <button type="button" class="btn btn-outline-primary">Log In</button>
+            {buttons()}
 
         </div>
     </>)
