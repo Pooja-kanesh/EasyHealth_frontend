@@ -10,6 +10,8 @@ const Header = function (props) {
         try {
             const user = await axios.post("http://localhost:8000/logout")
             localStorage.removeItem('Authorization')
+            localStorage.removeItem('member')
+            localStorage.removeItem('familyId')
             console.log(localStorage, user)
         } catch (e) {
             console.log(e)
@@ -25,7 +27,7 @@ const Header = function (props) {
         </>)
     }
     return (<>
-        <div className="home-nav">
+        <div className="home-nav border">
             <div className="inner">
                 <div><img className="home-logo" src={logo} alt="Logo" /></div>
                 <div className="title">EasyHealth</div>

@@ -41,7 +41,8 @@ const Login = function (props) {
                 // console.log(data, user)
 
                 localStorage.setItem('Authorization', user.data.token)
-                // console.log(localStorage)
+                axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('Authorization')}`;
+                // console.log(localStorage);
 
                 setEmail('')
                 setContact('')

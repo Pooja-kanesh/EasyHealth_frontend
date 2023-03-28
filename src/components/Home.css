@@ -1,9 +1,30 @@
-/* * {
-    border: 1px solid black
-} */
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@0;1&display=swap');
+
+.intro {
+    height: 60vh;
+    background-color: #7c2142c5;
+    margin: 3rem 8rem 2rem 8rem;
+    padding: 8rem;
+    border-radius: 2rem;
+    /* border-top-right-radius: 5em; */
+    border-bottom-right-radius: 15em;
+    color: white;
+    text-align: left;
+}
+
+.intro h1 {
+    font-family: 'Alkatra', cursive;
+    font-size: 4rem;
+}
+
+h3,
+h2 {
+    font-family: 'Raleway', sans-serif;
+}
 
 .container-box {
-    margin: 0 15rem;
+    margin: 0 10rem;
 }
 
 img {
@@ -22,11 +43,11 @@ img {
     justify-content: center;
     align-items: center;
     text-align: justify;
-    padding: 1em 3em;
+    padding: 1em 5em;
 }
 
 .col-4 {
-    max-height: 16em;
+    max-height: 20em;
 }
 
 .book {
