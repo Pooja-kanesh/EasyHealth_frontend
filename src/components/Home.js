@@ -18,7 +18,7 @@ const Home = function () {
                 <h5>Where we strive to provide you with the latest information<br></br> and resources related to vaccines and healthcare management. </h5>
                 <br></br>
                 <Link to="/register" ><button className="btn btn-outline-light home-register">Register</button></Link>
-                <h5>And access all the features now!</h5>
+                <h5>Access all the features now!</h5>
             </section>
             <div className="container-box">
                 <div className="row row-0">
