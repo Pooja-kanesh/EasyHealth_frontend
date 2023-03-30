@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+.form-page {
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4em 25%;
+    padding: 2rem;
+    box-shadow: 0 15px 14px 0.17px rgb(0 0 0 / 30%);
+    border-radius: 5px;
+}
+
+.register-form {
+    /* background-color: #d1d1d1;
+    border-radius: 10px;
+    max-width: 50%;
+    margin: 4rem 30%;
+    padding: 1em; */
+    min-width: 25rem;
+    min-height: 25em;
+}
+
+.form-image {
+    min-width: 20rem;
+    min-height: 30em;
+    background-image: url('../images/side-image.jpg');
+    opacity: 60%;
+}
+
+.form-style {
+    padding-bottom: 2em;
+}
+
+.form-style input:focus {
+    /* color: #000000;
+    background-color: #e6e6e6; */
+    border-color: rgba(133, 194, 208, 0.706);
+    outline: none;
+    box-shadow: none;
+}
+
+.animate {
+    font-family: 'Poppins', sans-serif;
+    text-align: left;
+    margin: 1.5em;
+}
+
+.label {
+    width: 20em;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding-left: 5px;
+    color: rgba(100, 100, 100, 0.81);
+}
+
+a {
+    text-decoration: none;
+}
+
+.role {
+    margin: 0.5em 0;
+    cursor: pointer;
+    color: #0d6efd;
+}
+
+.role label {
+    margin-left: 0.5em;
+}
+
+
+
+/* #f9e5e7 */
