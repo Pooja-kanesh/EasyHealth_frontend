@@ -6,6 +6,7 @@ import child_vac from "../images/child-vaccine.png";
 import health from "../images/health-records.png"
 import Header from "./Header.js"
 import "./Home.css"
+import { Link } from "react-router-dom";
 
 const Home = function () {
     return (
@@ -14,6 +15,10 @@ const Home = function () {
             <section className="intro">
                 <h1>EasyHealth</h1>
                 <h3>A solution to keep you and your family healthy</h3>
+                <h5>Where we strive to provide you with the latest information<br></br> and resources related to vaccines and healthcare management. </h5>
+                <br></br>
+                <Link to="/register" ><button className="btn btn-outline-light home-register">Register</button></Link>
+                <h5>And access all the features now!</h5>
             </section>
             <div className="container-box">
                 <div className="row row-0">

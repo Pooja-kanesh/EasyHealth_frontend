@@ -15,6 +15,8 @@ const Register = function (props) {
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
+    const [isCenter, setIsCenter] = useState(false)
+
 
     const navigate = useNavigate();
     const handleName = (e) => {
@@ -46,7 +48,11 @@ const Register = function (props) {
         }
         else {
             try {
-                const data = { name, email, contact, password }
+                let data = { name, email, contact, password }
+                if (isCenter) {
+                    data = { ...data, usertype: 'center' }
+                }
+
                 const user = await axios.post("http://localhost:8000/register", data)
                 console.log(data, user)
 
@@ -69,6 +75,11 @@ const Register = function (props) {
                 console.log(e)
             }
         }
+    }
+
+    const roleHandler = () => {
+        if (isCenter) setIsCenter(false)
+        else setIsCenter(true)
     }
 
     const successMessage = () => {
@@ -113,7 +124,7 @@ const Register = function (props) {
                 <form className="form-style">
                     {/* Labels and inputs for form data */}
                     <div className="animate">
-                        <label className="lable-animate">Name</label>
+                        <label className="label">Name</label>
                         <input
                             onChange={handleName}
                             placeholder=""
@@ -146,7 +157,13 @@ const Register = function (props) {
                             placeholder=" "
                             className="input form-control"
                             value={password}
-                            type="tel" />
+                            type="password" />
+                    </div>
+                    <div className="role">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault" onClick={roleHandler}>
+                            Register as Medical Center?
+                        </label>
                     </div>
                     <div>
                         <button

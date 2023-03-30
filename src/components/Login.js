@@ -15,6 +15,7 @@ const Login = function (props) {
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
+    const [isCenter, setIsCenter] = useState(false)
 
     const navigate = useNavigate();
 
@@ -60,7 +61,7 @@ const Login = function (props) {
 
             } catch (e) {
                 setError(true)
-                setErrMsg('*User Already Exists*')
+                setErrMsg('* Unable to Login. Please try again *')
                 console.log(e)
             }
         }
@@ -91,6 +92,10 @@ const Login = function (props) {
         );
     };
 
+    const roleHandler = () => {
+        if (isCenter) setIsCenter(false)
+        else setIsCenter(true)
+    }
 
     return (<>
         <Header isSubmitted={submitted} />
@@ -131,7 +136,13 @@ const Login = function (props) {
                             placeholder=" "
                             className="input form-control"
                             value={password}
-                            type="tel" />
+                            type="password" />
+                    </div>
+                    <div className="role">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                        <label class="form-check-label" for="flexCheckDefault" onClick={roleHandler}>
+                            Login as Medical Center?
+                        </label>
                     </div>
                     <div>
                         <button
