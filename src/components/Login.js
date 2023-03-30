@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom"
 const Login = function (props) {
     const [email, setEmail] = useState('')
     const [contact, setContact] = useState('')
+    const [password, setPassword] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
@@ -27,16 +28,21 @@ const Login = function (props) {
         setSubmitted(false);
     }
 
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+        setSubmitted(false);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!email.includes("@" || !contact)) {
+        if (!email.includes("@" || !contact || !password)) {
             setError(true);
             setErrMsg('* Please enter all the fields correctly*')
         } else {
             try {
 
-                const data = { email, contact }
+                const data = { email, contact, password }
                 const user = await axios.post("http://localhost:8000/login", data)
                 // console.log(data, user)
 
@@ -46,6 +52,7 @@ const Login = function (props) {
 
                 setEmail('')
                 setContact('')
+                setPassword('')
                 setErrMsg('')
                 setError(false)
                 setSubmitted(true)
@@ -117,7 +124,15 @@ const Login = function (props) {
                             value={contact}
                             type="tel" />
                     </div>
-
+                    <div className="animate">
+                        <label className="label">Password</label>
+                        <input
+                            onChange={handlePassword}
+                            placeholder=" "
+                            className="input form-control"
+                            value={password}
+                            type="tel" />
+                    </div>
                     <div>
                         <button
                             onClick={handleSubmit}

@@ -11,6 +11,7 @@ const Register = function (props) {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [contact, setContact] = useState('')
+    const [password, setPassword] = useState('')
     const [submitted, setSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const [errMsg, setErrMsg] = useState('')
@@ -31,16 +32,21 @@ const Register = function (props) {
         setSubmitted(false);
     }
 
+    const handlePassword = (e) => {
+        setPassword(e.target.value)
+        setSubmitted(false);
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (name === "" || !email.includes("@" || !contact)) {
+        if (name === "" || !email.includes("@" || !contact || !password)) {
             setError(true);
             setErrMsg('* Please enter all the fields correctly* ')
         }
         else {
             try {
-                const data = { name, email, contact }
+                const data = { name, email, contact, password }
                 const user = await axios.post("http://localhost:8000/register", data)
                 console.log(data, user)
 
@@ -51,6 +57,7 @@ const Register = function (props) {
                 setName('')
                 setEmail('')
                 setContact('')
+                setPassword('')
                 setErrMsg('')
                 setError(false)
                 setSubmitted(true)
@@ -130,6 +137,15 @@ const Register = function (props) {
                             placeholder=" "
                             className="input form-control"
                             value={contact}
+                            type="tel" />
+                    </div>
+                    <div className="animate">
+                        <label className="label">Password</label>
+                        <input
+                            onChange={handlePassword}
+                            placeholder=" "
+                            className="input form-control"
+                            value={password}
                             type="tel" />
                     </div>
                     <div>
