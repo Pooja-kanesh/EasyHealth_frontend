@@ -7,6 +7,7 @@ import Login from './components/Login'
 import Register from './components/Register';
 import UserHome from './components/UserHome';
 import ViewDetails from './components/ViewDetails';
+import CenterHome from './components/CenterHome';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
         <Route path='/user' element={<UserHome />} />
+        <Route path='/center' element={<CenterHome />} />
         <Route path='/user/viewDetails' element={<ViewDetails />} />
       </Routes>
     </div>

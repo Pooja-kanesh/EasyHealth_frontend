@@ -57,6 +57,20 @@ const UserHome = function () {
         getMembers()
     }
 
+    const handleDownload = () => {
+        fetch('sample.pdf').then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = 'SamplePDF.pdf';
+                alink.click();
+            })
+        })
+    }
+
     useEffect(() => {
         getMembers()
     }, [members]);
@@ -65,8 +79,9 @@ const UserHome = function () {
         <Header isSubmitted='true' />
         <div className="home-section">
             <div className="container px-4 text-center">
-                <p>View Vaccine Card</p>
-                <p>View Bookings</p>
+                <p className="btn" onClick={handleDownload}>Download Certificate</p>
+                <p className="btn">View Vaccine Card</p>
+                <p className="btn">View Bookings</p>
             </div>
             <div className="homepage">
                 <Centers />

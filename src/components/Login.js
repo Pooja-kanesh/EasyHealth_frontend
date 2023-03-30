@@ -57,7 +57,8 @@ const Login = function (props) {
                 setErrMsg('')
                 setError(false)
                 setSubmitted(true)
-                navigate('/user')
+                if (isCenter) navigate('/center')
+                else navigate('/user')
 
             } catch (e) {
                 setError(true)
