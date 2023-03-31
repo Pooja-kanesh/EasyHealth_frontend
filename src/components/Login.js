@@ -140,8 +140,11 @@ const Login = function (props) {
                             type="password" />
                     </div>
                     <div className="role">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-                        <label class="form-check-label" for="flexCheckDefault" onClick={roleHandler}>
+                        <input class="form-check-input"
+                            id="flexCheckDefault"
+                            type="checkbox" value="center"
+                            onClick={roleHandler} />
+                        <label class="form-check-label" for="flexCheckDefault">
                             Login as Medical Center?
                         </label>
                     </div>

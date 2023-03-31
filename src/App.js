@@ -8,6 +8,7 @@ import Register from './components/Register';
 import UserHome from './components/UserHome';
 import ViewDetails from './components/ViewDetails';
 import CenterHome from './components/CenterHome';
+import Chart from './components/Charts'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/user' element={<UserHome />} />
         <Route path='/center' element={<CenterHome />} />
+        <Route path='/chart' element={<Chart />} />
         <Route path='/user/viewDetails' element={<ViewDetails />} />
       </Routes>
     </div>

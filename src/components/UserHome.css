@@ -93,3 +93,22 @@ h4 {
 .hidden {
     display: none;
 }
+
+.user-extra {
+    height: 88vh;
+    box-shadow: 0 8px 5px 0.18px rgb(0 0 0 / 30%);
+}
+
+.user-extra div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2rem 0;
+    background-color: rgba(250, 143, 150, 0.695);
+    cursor: pointer;
+}
+
+.user-extra a {
+    color: rgb(39, 39, 39);
+    max-width: 10rem;
+}

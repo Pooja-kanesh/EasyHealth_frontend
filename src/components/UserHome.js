@@ -7,8 +7,11 @@ import Centers from './Centers.js'
 import ViewMembers from "./ViewMembers";
 import "./ViewMembers.css"
 import "./UserHome.css"
+import { useNavigate } from "react-router-dom";
 
 const UserHome = function () {
+    const navigate = useNavigate()
+
     const [members, setMembers] = useState([])
     const [familyId, setFamilyId] = useState("")
     const [name, setName] = useState("");
@@ -71,6 +74,10 @@ const UserHome = function () {
         })
     }
 
+    const handleVaccCard = () => {
+        navigate('/')
+    }
+
     useEffect(() => {
         getMembers()
     }, [members]);
@@ -78,10 +85,10 @@ const UserHome = function () {
     return (<>
         <Header isSubmitted='true' />
         <div className="home-section">
-            <div className="container px-4 text-center">
-                <p className="btn" onClick={handleDownload}>Download Certificate</p>
-                <p className="btn">View Vaccine Card</p>
-                <p className="btn">View Bookings</p>
+            <div className="container px-4 text-center user-extra">
+                <div className="card" onClick={handleDownload}>Download Certificate</div>
+                <div className="card" onClick={handleVaccCard}>View Vaccine Card</div>
+                <div className="card">View Bookings</div>
             </div>
             <div className="homepage">
                 <Centers />
@@ -113,7 +120,7 @@ const UserHome = function () {
                         </tr>
                     </tfoot>
                 </table>
-            </div></div>
+            </div></div >
     </>
     );
 

@@ -20,7 +20,8 @@ const Header = function (props) {
 
     const buttons = () => {
         if (props.isSubmitted) {
-            return (<><div></div><Link onClick={logoutHandler} className="btn btn-primary logbtn" to="/">Log Out</Link></>)
+            return (<><div></div>
+                <Link onClick={logoutHandler} className="btn btn-primary logbtn" to="/">Log Out</Link></>)
         }
         return (<><Link className="btn btn-danger link-to" to="/register">Register</Link>
             <Link className="btn btn-primary logbtn" to="/login">Log In</Link>
