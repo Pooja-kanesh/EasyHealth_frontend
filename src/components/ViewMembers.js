@@ -125,7 +125,7 @@ const ViewMembers = function (props) {
                     <td>
                         <button className="btn btn-outline-success"
                             onClick={() => clickHandler(item, i)}>
-                            View Details
+                            Details
                         </button>
                     </td>
                 </tr>

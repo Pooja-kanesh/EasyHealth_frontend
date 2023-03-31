@@ -75,7 +75,7 @@ const UserHome = function () {
     }
 
     const handleVaccCard = () => {
-        navigate('/')
+        navigate('/chart')
     }
 
     useEffect(() => {

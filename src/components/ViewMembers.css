@@ -22,3 +22,13 @@
     background-color: #198754;
     color: #fff;
 }
+
+.book-slot {
+    max-width: 8rem;
+}
+
+.center-card {
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(195, 195, 195, 0.554);
+}

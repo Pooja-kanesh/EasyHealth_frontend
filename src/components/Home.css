@@ -68,3 +68,22 @@ img {
 .record {
     background-color: #c4e5d150;
 }
+
+.footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #0c0c0c;
+    color: #fff;
+    margin: 0;
+    padding: 0.5em 1.5em 0 0.5em;
+    text-align: right;
+    font-size: small;
+}
+
+.footer img {
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+}

@@ -11,8 +11,11 @@ const Centers = function () {
     const [stateName, setStateName] = useState('')
     const [districts, setDistricts] = useState([])
     const [districtName, setDistrictName] = useState('')
+    const [vaccines, setVaccines] = useState([])
+    const [vaccineName, setVaccineName] = useState('')
     const [centers, setCenters] = useState([])
-    // const [stateName, setStateName] = useState('------Select State-----')
+    // const [bookBtn, setBookBtn] = useState('Book Slot')
+    axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem('Authorization')}`;
 
     async function getState() {
         const data = await axios.get("http://localhost:8000/states")
@@ -30,6 +33,15 @@ const Centers = function () {
         getDistrict()
     }, [])
 
+    async function getVaccine() {
+        const data = await axios.get("http://localhost:8000/vaccines")
+        console.log(data.data)
+        setVaccines(data.data)
+    }
+    // useEffect(() => {
+    //     getVaccine()
+    // }, [])
+
     const handleState = (e) => {
         getState()
     }
@@ -41,6 +53,12 @@ const Centers = function () {
     }
     const handleDistrictName = (e) => {
         setDistrictName(e.target.value)
+    }
+    const handleVaccine = (e) => {
+        getVaccine()
+    }
+    const handleVaccineName = (e) => {
+        setVaccineName(e.target.value)
     }
 
     const searchHospitals = async (state, district) => {
@@ -70,17 +88,25 @@ const Centers = function () {
         setStateName('')
         document.getElementById('selectDistrict').value = 'selected'
         setDistrictName('')
+        document.getElementById('selectVaccine').value = 'selected'
+        // setVaccineName('')
 
         searchHospitals(stateName, districtName)
         document.getElementById('centers').classList.remove('hidden')
         // console.log(stateName, districtName)
     }
 
+    const sendInfo = async (center, vaccine) => {
+        const data = await axios.post("http://localhost:8000/booking", { center, vaccine })
+    }
+
     const booked = (i) => {
-        const bookCenter = document.getElementById(`book-slot-${i}`)
-        bookCenter.classList.remove('btn-outline-primary')
-        bookCenter.classList.add('btn-success')
-        // bookBtn = 'Booked'
+        const bookSlot = document.getElementById(`book-slot-${i}`)
+        bookSlot.classList.remove('btn-outline-primary')
+        bookSlot.classList.add('btn-success')
+        bookSlot.setAttribute('disabled', '')
+
+        sendInfo(centers[i], vaccineName)
     }
 
     const handleClose = () => {
@@ -94,10 +120,10 @@ const Centers = function () {
         )
         return (
             centers.map((center, i) => {
-                return (<div className="card" key={i}>
+                return (<div className="card center-card" key={i}>
                     <p>{center.name}</p>
                     <p>{center.address}</p>
-                    <button className="btn btn-outline-primary" id={`book-slot-${i}`} onClick={() => { booked(i) }}>
+                    <button className="btn btn-outline-primary book-slot" id={`book-slot-${i}`} onClick={() => { booked(i) }}>
                         Book Slot</button>
                 </div>)
             })
@@ -123,12 +149,19 @@ const Centers = function () {
                         <option value='selected'>Select District</option>
                         {districts.map((district) => <option key={district.district_id} value={district.district_name}>{district.district_name}</option>)}
                     </select>
+                    <select className="form-select" id="selectVaccine"
+                        onClick={handleVaccine}
+                        onChange={handleVaccineName}
+                    >
+                        <option value='selected'>Select Vaccine</option>
+                        {vaccines.map((vaccine) => <option key={vaccine.id} value={vaccine.name}>{vaccine.name}</option>)}
+                    </select>
                     <button className="btn search-btn" type="submit" onClick={handleSubmit}><img className="search-icon" src={search} alt="search" /></button>
                 </form>
             </>
         </div>
-        <div className="hidden" id="centers">
-            <div className="center-list"><div>Available Centers</div>
+        <div className="center-list hidden" id="centers">
+            <div className="center-list-head"><div>Available Centers</div>
                 <div className="btn" onClick={handleClose}><img src={close} alt='close' /></div></div>
             {renderCenters(centers)}
         </div>
