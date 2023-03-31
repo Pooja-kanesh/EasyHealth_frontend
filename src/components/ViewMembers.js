@@ -7,6 +7,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import edit from '../images/edit.png'
 import "./ViewMembers.css"
 
+// const _ = require('lodash');
+
 const ViewMembers = function (props) {
     const [arr, setArr] = useState([]);
     const [detailArr, setDetailArr] = useState([]);
@@ -69,30 +71,34 @@ const ViewMembers = function (props) {
     }, [detailArr])
 
     const clickHandler = (user, i) => {
+        // console.log(user)
+        setUser(user.member)
         document.getElementById(`details-${i}`).classList.toggle('collapse')
     }
 
     const handleEdit = (i) => {
+        document.getElementById(`d-form-${i}`).removeAttribute('disabled')
         setUser(arr[i].member)
     }
 
-    const handleDob = (e) => {
+    const handleDob = (i, e) => {
         setDob(e.target.value)
         // setSubmitted(false);
     }
-    const handleHeight = (e) => {
+    const handleHeight = (i, e) => {
         setHeight(e.target.value)
+        console.log(i)
         // setSubmitted(false);
     }
-    const handleWeight = (e) => {
+    const handleWeight = (i, e) => {
         setWeight(e.target.value)
         // setSubmitted(false);
     }
-    const handleBgrp = (e) => {
+    const handleBgrp = (i, e) => {
         setBgrp(e.target.value)
         // setSubmitted(false);
     }
-    const handleMainDisease = (e) => {
+    const handleMainDisease = (i, e) => {
         setMainDisease(e.target.value)
         // setSubmitted(false);
     }
@@ -101,19 +107,22 @@ const ViewMembers = function (props) {
     //     // setSubmitted(false);
     // }
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (i, e) => {
         e.preventDefault()
 
         const data = { dob, height, weight, bloodGroup: bgroup, majorIllness: mainDisease, user: user }
         const details = await axios.post("http://localhost:8000/user/addDetails", data)
 
-        console.log(details)
+        document.getElementById(`dob-${i}`).value = ''
+        document.getElementById(`h-${i}`).value = ''
+        document.getElementById(`w-${i}`).value = ''
+        document.getElementById(`b-${i}`).value = ''
+        document.getElementById(`d-${i}`).value = ''
+        document.getElementById(`d-form-${i}`).setAttribute('disabled')
+        console.log(data)
         getDetails()
     }
 
-    const h = "Height (in cm)"
-    const w = "Weight (in kg)"
-    const d = "Disease (if any)"
     return (<>
         {arr.map((item, i) => {
             // console.log(item)
@@ -141,49 +150,54 @@ const ViewMembers = function (props) {
                                 <tr scope="row">
                                     <td>
                                         <div className='detail-block'>
-                                            <form className="detail-form">
+                                            <form className="detail-form" id={`d-form-${i}`}>
                                                 <div>
                                                     <label className="label">Date Of Birth</label>
-                                                    <input type="date"
-                                                        className="input form-control"
-                                                        // placeholder={`${detailArr[i].dob ? detailArr[i].dob : ''}`}
-                                                        onChange={handleDob}
-                                                    // value={`${detailArr[i].dob ? detailArr[i].dob : ''}`}
-                                                    ></input>
-                                                </div>
-                                                <div>
-                                                    <label className="label">{h}</label>
                                                     <input type="text"
                                                         className="input form-control"
-                                                        // placeholder={`${detailArr[i].height ? detailArr[i].height : ''}`}
-                                                        onChange={handleHeight}
-                                                    // value={`${detailArr[i].height ? detailArr[i].height : ''}`}
+                                                        id={`dob-${i}`}
+                                                        // placeholder={`${detailArr[i].dob ? detailArr[i].dob : ''}`}
+                                                        onChange={(e) => { handleDob(i, e) }}
+                                                        placeholder={`${detailArr[i].dob ? detailArr[i].dob : 'Enter Dob'}`}
                                                     ></input>
                                                 </div>
                                                 <div>
-                                                    <label className="label">{w}</label>
-                                                    <input type="tel"
+                                                    <label className="label">{`Height (in cm)`}</label>
+                                                    <input type="text"
                                                         className="input form-control"
+                                                        id={`h-${i}`}
+                                                        // placeholder={`${detailArr[i].height ? detailArr[i].height : ''}`}
+                                                        onChange={(e) => { handleHeight(i, e) }}
+                                                        placeholder={`${detailArr[i].height ? detailArr[i].height : 'Enter Height'}`}
+                                                    ></input>
+                                                </div>
+                                                <div>
+                                                    <label className="label">{`Weight (in kg)`}</label>
+                                                    <input type="text"
+                                                        className="input form-control"
+                                                        id={`w-${i}`}
                                                         // placeholder={`${detailArr[i].weight ? detailArr[i].weight : ''}`}
-                                                        onChange={handleWeight}
-                                                    // value={`${detailArr[i].weight ? detailArr[i].weight : ''}`}
+                                                        onChange={(e) => { handleWeight(i, e) }}
+                                                        placeholder={`${detailArr[i].weight ? detailArr[i].weight : 'Enter Weight'}`}
                                                     ></input>
                                                 </div>
                                                 <div>
                                                     <label className="label">Blood Group</label>
                                                     <input type="text"
                                                         className="input form-control"
+                                                        id={`b-${i}`}
                                                         // placeholder={`${detailArr[i].bloodGroup ? detailArr[i].bloodGroup : ''}`}
-                                                        onChange={handleBgrp}
-                                                    // value={`${detailArr[i].bloodGroup ? detailArr[i].bloodGroup : ''}`}
+                                                        onChange={(e) => { handleBgrp(i, e) }}
+                                                        placeholder={`${detailArr[i].bloodGroup ? detailArr[i].bloodGroup : 'Enter Blood group'}`}
                                                     ></input>
                                                 </div>
                                                 <div>
-                                                    <label className="label">{d}</label>
+                                                    <label className="label">{`Disease (if any)`}</label>
                                                     <input type="text"
                                                         className="input form-control"
-                                                        // placeholder={`${detailArr[i].majorIllness ? detailArr[i].majorIllness : ''}`}
-                                                        onChange={handleMainDisease}>
+                                                        id={`d-${i}`}
+                                                        placeholder={`${detailArr[i].majorIllness ? detailArr[i].majorIllness : 'Enter Major Disease'}`}
+                                                        onChange={(e) => { handleMainDisease(i, e) }}>
                                                     </input>
                                                 </div>
                                                 <div>
@@ -196,7 +210,7 @@ const ViewMembers = function (props) {
                                                     <button
                                                         className="btn btn-dark" id={`submit-btn-${i}`}
                                                         type="submit"
-                                                        onClick={handleSubmit}>
+                                                        onClick={(e) => { handleSubmit(i, e) }}>
                                                         Submit
                                                     </button>
                                                 </div>

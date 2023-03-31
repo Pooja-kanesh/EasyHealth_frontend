@@ -53,7 +53,7 @@ const Home = function () {
             <div className="footer">
                 <p><img src={mail} alt='mail' />email : poojakanesh@outlook.com</p>
                 <p><img src={call} alt="contact" />contact : XXX- XXX1234</p>
-                <p><img src={admin} alt="admin" />administaives</p>
+                <p><img src={admin} alt="admin" />Administatives</p>
             </div>
         </>
     );
